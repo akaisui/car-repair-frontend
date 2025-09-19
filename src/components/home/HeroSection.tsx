@@ -7,11 +7,7 @@ import { brand } from '@/styles/design-system';
 import { serviceApi } from '@/lib/api/services';
 import { Service } from '@/types';
 
-const heroImages = [
-  '/images/hero/hero1.jfif',
-  '/images/hero/hero2.jfif',
-  '/images/hero/hero3.jfif',
-];
+const heroImages = ['/images/hero/hero1.png', '/images/hero/hero2.png', '/images/hero/hero3.png'];
 
 const CalendarIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
