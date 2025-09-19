@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 const reviews = [
   {
     id: 1,
-    name: 'Nguyễn Văn A',
-    location: 'Quận 1, TP.HCM',
+    name: 'Trần Minh Khôi',
+    location: 'Ninh Kiều, Cần Thơ',
     rating: 5,
     avatar: '/images/avatars/customer-1.jpg',
     review:
@@ -17,8 +17,8 @@ const reviews = [
   },
   {
     id: 2,
-    name: 'Trần Thị B',
-    location: 'Quận 3, TP.HCM',
+    name: 'Lê Thị Hồng Thảo',
+    location: 'Cái Răng, Cần Thơ',
     rating: 5,
     avatar: '/images/avatars/customer-2.jpg',
     review:
@@ -29,8 +29,8 @@ const reviews = [
   },
   {
     id: 3,
-    name: 'Lê Văn C',
-    location: 'Quận 7, TP.HCM',
+    name: 'Nguyễn Thanh Phong',
+    location: 'Bình Thủy, Cần Thơ',
     rating: 5,
     avatar: '/images/avatars/customer-3.jpg',
     review:
@@ -41,8 +41,8 @@ const reviews = [
   },
   {
     id: 4,
-    name: 'Phạm Thị D',
-    location: 'Quận 10, TP.HCM',
+    name: 'Võ Thị Minh Châu',
+    location: 'Ô Môn, Cần Thơ',
     rating: 5,
     avatar: '/images/avatars/customer-4.jpg',
     review:
@@ -53,8 +53,8 @@ const reviews = [
   },
   {
     id: 5,
-    name: 'Võ Văn E',
-    location: 'Quận Bình Thạnh, TP.HCM',
+    name: 'Đặng Hoàng Nam',
+    location: 'Thốt Nốt, Cần Thơ',
     rating: 5,
     avatar: '/images/avatars/customer-5.jpg',
     review:
@@ -65,8 +65,8 @@ const reviews = [
   },
   {
     id: 6,
-    name: 'Nguyễn Thị F',
-    location: 'Quận Tân Bình, TP.HCM',
+    name: 'Huỳnh Thị Lan Anh',
+    location: 'Phong Điền, Cần Thơ',
     rating: 5,
     avatar: '/images/avatars/customer-6.jpg',
     review:
