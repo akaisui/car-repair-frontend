@@ -294,7 +294,7 @@ END:VCALENDAR`;
         // Refresh appointments list
         const updatedResponse = await appointmentApi.getMyAppointments();
         if (updatedResponse.success) {
-          setAppointments(updatedResponse.data);
+          setAppointments(updatedResponse.data || []);
         }
       } else {
         setError('Không thể hủy lịch hẹn');
@@ -678,9 +678,9 @@ END:VCALENDAR`;
                                 <p className="text-sm text-gray-600 mb-2">{appointment.notes}</p>
                               )}
 
-                              {appointment.status === 'cancelled' && appointment.cancelReason && (
+                              {appointment.status === 'cancelled' && (appointment as any).cancelReason && (
                                 <p className="text-sm text-red-600">
-                                  <strong>Lý do hủy:</strong> {appointment.cancelReason}
+                                  <strong>Lý do hủy:</strong> {(appointment as any).cancelReason}
                                 </p>
                               )}
                             </div>

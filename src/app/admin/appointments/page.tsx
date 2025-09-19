@@ -71,7 +71,7 @@ export default function AdminAppointmentsPage() {
         params.search = search.trim();
       }
 
-      const response = await appointmentApi.getAllAppointments(params);
+      const response: any = await appointmentApi.getAllAppointments(params);
 
       if (response.success) {
         setAppointments(response.data);
@@ -94,7 +94,7 @@ export default function AdminAppointmentsPage() {
       setUpdating(appointmentId);
       setError(null);
 
-      const response = await appointmentApi.updateAppointmentStatus(appointmentId, newStatus);
+      const response: any = await appointmentApi.updateAppointmentStatus(appointmentId, newStatus);
 
       if (response.success) {
         // Update local state
@@ -372,18 +372,18 @@ export default function AdminAppointmentsPage() {
                           {appointment.service_name}
                         </div>
                         <div className="text-green-600 font-semibold">
-                          {formatCurrency(appointment.service_price)}
+                          {formatCurrency((appointment as any).service_price || 0)}
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm">
                         <div className="font-medium text-gray-900">
-                          🚗 {appointment.vehicle_license_plate}
+                          🚗 {(appointment as any).vehicle_license_plate || 'N/A'}
                         </div>
-                        {appointment.vehicle_brand && (
+                        {(appointment as any).vehicle_brand && (
                           <div className="text-gray-500">
-                            {appointment.vehicle_brand} {appointment.vehicle_model} {appointment.vehicle_year}
+                            {(appointment as any).vehicle_brand} {(appointment as any).vehicle_model} {(appointment as any).vehicle_year}
                           </div>
                         )}
                       </div>
@@ -504,7 +504,7 @@ export default function AdminAppointmentsPage() {
                     <div className="pl-6 space-y-1">
                       <p className="font-medium text-gray-900">{appointment.service_name}</p>
                       <p className="text-green-600 font-semibold">
-                        {formatCurrency(appointment.service_price)}
+                        {formatCurrency((appointment as any).service_price || 0)}
                       </p>
                     </div>
                   </div>
@@ -515,10 +515,10 @@ export default function AdminAppointmentsPage() {
                       <span className="mr-2">🚗</span>Phương Tiện
                     </h4>
                     <div className="pl-6 space-y-1">
-                      <p className="font-medium text-gray-900">{appointment.vehicle_license_plate}</p>
-                      {appointment.vehicle_brand && (
+                      <p className="font-medium text-gray-900">{(appointment as any).vehicle_license_plate || 'N/A'}</p>
+                      {(appointment as any).vehicle_brand && (
                         <p className="text-sm text-gray-500">
-                          {appointment.vehicle_brand} {appointment.vehicle_model} {appointment.vehicle_year}
+                          {(appointment as any).vehicle_brand} {(appointment as any).vehicle_model} {(appointment as any).vehicle_year}
                         </p>
                       )}
                     </div>

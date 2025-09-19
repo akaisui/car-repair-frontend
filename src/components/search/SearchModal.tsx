@@ -87,8 +87,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     try {
       setLoading(true);
       const response = await serviceApi.getServicesWithPricing({
-        limit: 20,
-        featured: true // Get featured/popular services first
+        limit: 20
       });
 
       if (response.success && response.data) {
@@ -128,7 +127,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
       const filtered = services.filter(service =>
         service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         service.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        service.category?.toLowerCase().includes(searchQuery.toLowerCase())
+        (service.category as any)?.name?.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredServices(filtered);
     }
@@ -230,7 +229,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
 
                 {filteredServices.map((service) => {
-                  const emoji = getServiceEmoji(service.name, service.category);
+                  const emoji = getServiceEmoji(service.name, (service.category as any)?.name);
                   const price = service.price || service.min_price || 0;
 
                   return (
@@ -245,7 +244,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           <h4 className="font-medium text-gray-900 group-hover:text-primary-700">
                             {service.name}
                           </h4>
-                          <p className="text-sm text-gray-500">{service.category || 'Dịch vụ'}</p>
+                          <p className="text-sm text-gray-500">{(service.category as any)?.name || 'Dịch vụ'}</p>
                         </div>
                       </div>
                       <div className="text-right">

@@ -32,37 +32,37 @@ export const notificationApi = {
       }
     });
 
-    const response = await apiClient.get(`/notifications?${queryParams.toString()}`);
+    const response: any = await apiClient.get(`/notifications?${queryParams.toString()}`);
     return response.data;
   },
 
   // Get unread count
   getUnreadCount: async (): Promise<{ success: boolean; data: { unread_count: number } }> => {
-    const response = await apiClient.get('/notifications/unread-count');
+    const response: any = await apiClient.get('/notifications/unread-count');
     return response.data;
   },
 
   // Get recent notifications (for real-time updates)
   getRecentNotifications: async (limit: number = 5): Promise<{ success: boolean; data: Notification[] }> => {
-    const response = await apiClient.get(`/notifications/recent?limit=${limit}`);
+    const response: any = await apiClient.get(`/notifications/recent?limit=${limit}`);
     return response.data;
   },
 
   // Mark notification as read
   markAsRead: async (id: number): Promise<{ success: boolean; message: string }> => {
-    const response = await apiClient.put(`/notifications/${id}/read`);
+    const response: any = await apiClient.put(`/notifications/${id}/read`);
     return response.data;
   },
 
   // Mark all notifications as read
   markAllAsRead: async (): Promise<{ success: boolean; message: string }> => {
-    const response = await apiClient.put('/notifications/mark-all-read');
+    const response: any = await apiClient.put('/notifications/mark-all-read');
     return response.data;
   },
 
   // Delete notification
   deleteNotification: async (id: number): Promise<{ success: boolean; message: string }> => {
-    const response = await apiClient.delete(`/notifications/${id}`);
+    const response: any = await apiClient.delete(`/notifications/${id}`);
     return response.data;
   }
 };

@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 // import RepairHistoryPage from '@/components/dashboard/RepairHistoryPage';
 
 export default function DashboardHistoryPage() {
@@ -38,18 +40,18 @@ export default function DashboardHistoryPage() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
+          <Link
             href="/"
             className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             🏠 Về trang chủ
-          </a>
-          <a
+          </Link>
+          <Link
             href="/services"
             className="px-6 py-3 bg-white text-gray-700 font-semibold rounded-lg border border-gray-300 hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
           >
             🔧 Xem dịch vụ
-          </a>
+          </Link>
         </div>
 
         {/* Timeline */}

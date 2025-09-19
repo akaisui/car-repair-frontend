@@ -50,7 +50,7 @@ export const dashboardApi = {
    * Get dashboard statistics
    */
   getStats: async (): Promise<DashboardStats> => {
-    const response = await apiClient.get('/dashboard/stats');
+    const response: any = await apiClient.get('/dashboard/stats');
     return response.data;
   },
 
@@ -58,7 +58,7 @@ export const dashboardApi = {
    * Get monthly statistics for charts
    */
   getMonthlyStats: async (): Promise<MonthlyStats> => {
-    const response = await apiClient.get('/dashboard/monthly-stats');
+    const response: any = await apiClient.get('/dashboard/monthly-stats');
     return response.data;
   }
 };

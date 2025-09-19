@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import BookingForm from '@/components/booking/BookingForm';
 import { serviceApi } from '@/lib/api/services';
 import { Service } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
 
-export default function BookAppointmentPage() {
+function BookAppointmentPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
@@ -39,7 +39,7 @@ export default function BookAppointmentPage() {
         if (preSelectedServiceSlug) {
           try {
             const serviceResponse = await serviceApi.getServiceBySlug(preSelectedServiceSlug);
-            setPreSelectedService(serviceResponse.data);
+            setPreSelectedService(serviceResponse.data || null);
           } catch (error) {
             console.warn('Could not find pre-selected service:', preSelectedServiceSlug);
           }
@@ -86,5 +86,13 @@ export default function BookAppointmentPage() {
         />
       </div>
     </div>
+  );
+}
+
+export default function BookAppointmentPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">Đang tải...</div>}>
+      <BookAppointmentPageContent />
+    </Suspense>
   );
 }

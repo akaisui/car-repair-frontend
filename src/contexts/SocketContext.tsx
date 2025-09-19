@@ -25,11 +25,11 @@ interface SocketProviderProps {
 export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
-  const { user, isAuthenticated } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     console.log('🔌 SocketContext effect triggered');
-    console.log('🔌 isAuthenticated:', isAuthenticated);
+    console.log('🔌 user:', !!user);
     console.log('🔌 user:', user);
 
     if (user) {
@@ -87,7 +87,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
         setIsConnected(false);
       }
     }
-  }, [isAuthenticated, user]);
+  }, [user]);
 
   const value = {
     socket,

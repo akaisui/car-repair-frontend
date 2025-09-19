@@ -143,43 +143,43 @@ export const repairApi = {
       }
     });
 
-    const response = await apiClient.get(`/repairs?${params.toString()}`);
+    const response: any = await apiClient.get(`/repairs?${params.toString()}`);
     return response.data;
   },
 
   // Get repair by ID with details
   getRepairById: async (id: number): Promise<{ success: boolean; data: RepairWithDetails }> => {
-    const response = await apiClient.get(`/repairs/${id}`);
+    const response: any = await apiClient.get(`/repairs/${id}`);
     return response.data;
   },
 
   // Create new repair
   createRepair: async (data: CreateRepairData) => {
-    const response = await apiClient.post('/repairs', data);
+    const response: any = await apiClient.post('/repairs', data);
     return response.data;
   },
 
   // Update repair
   updateRepair: async (id: number, data: UpdateRepairData) => {
-    const response = await apiClient.put(`/repairs/${id}`, data);
+    const response: any = await apiClient.put(`/repairs/${id}`, data);
     return response.data;
   },
 
   // Update repair status
   updateRepairStatus: async (id: number, status: string, notes?: string) => {
-    const response = await apiClient.put(`/repairs/${id}/status`, { status, notes });
+    const response: any = await apiClient.put(`/repairs/${id}/status`, { status, notes });
     return response.data;
   },
 
   // Assign mechanic to repair
   assignMechanic: async (id: number, mechanic_id: number) => {
-    const response = await apiClient.put(`/repairs/${id}/assign-mechanic`, { mechanic_id });
+    const response: any = await apiClient.put(`/repairs/${id}/assign-mechanic`, { mechanic_id });
     return response.data;
   },
 
   // Delete repair
   deleteRepair: async (id: number) => {
-    const response = await apiClient.delete(`/repairs/${id}`);
+    const response: any = await apiClient.delete(`/repairs/${id}`);
     return response.data;
   },
 
@@ -192,7 +192,7 @@ export const repairApi = {
       }
     });
 
-    const response = await apiClient.get(`/repairs/history?${queryParams.toString()}`);
+    const response: any = await apiClient.get(`/repairs/history?${queryParams.toString()}`);
     return response.data;
   },
 
@@ -202,13 +202,13 @@ export const repairApi = {
     if (date_from) params.append('date_from', date_from);
     if (date_to) params.append('date_to', date_to);
 
-    const response = await apiClient.get(`/repairs/summary?${params.toString()}`);
+    const response: any = await apiClient.get(`/repairs/summary?${params.toString()}`);
     return response.data;
   },
 
   // Get repairs by status
   getRepairsByStatus: async (status: string, limit: number = 20) => {
-    const response = await apiClient.get(`/repairs/status/${status}?limit=${limit}`);
+    const response: any = await apiClient.get(`/repairs/status/${status}?limit=${limit}`);
     return response.data;
   },
 
@@ -218,45 +218,45 @@ export const repairApi = {
     if (status) params.append('status', status);
     params.append('limit', limit.toString());
 
-    const response = await apiClient.get(`/repairs/mechanic/${mechanic_id}?${params.toString()}`);
+    const response: any = await apiClient.get(`/repairs/mechanic/${mechanic_id}?${params.toString()}`);
     return response.data;
   },
 
   // Recalculate repair costs
   calculateCosts: async (id: number) => {
-    const response = await apiClient.post(`/repairs/${id}/calculate-costs`);
+    const response: any = await apiClient.post(`/repairs/${id}/calculate-costs`);
     return response.data;
   },
 
   // Service management
   addService: async (repairId: number, data: { service_id: number; quantity?: number; custom_price?: number; notes?: string }) => {
-    const response = await apiClient.post(`/repairs/${repairId}/services`, data);
+    const response: any = await apiClient.post(`/repairs/${repairId}/services`, data);
     return response.data;
   },
 
   updateService: async (repairId: number, serviceId: number, data: { quantity?: number; unit_price?: number; notes?: string }) => {
-    const response = await apiClient.put(`/repairs/${repairId}/services/${serviceId}`, data);
+    const response: any = await apiClient.put(`/repairs/${repairId}/services/${serviceId}`, data);
     return response.data;
   },
 
   removeService: async (repairId: number, serviceId: number) => {
-    const response = await apiClient.delete(`/repairs/${repairId}/services/${serviceId}`);
+    const response: any = await apiClient.delete(`/repairs/${repairId}/services/${serviceId}`);
     return response.data;
   },
 
   // Parts management
   addPart: async (repairId: number, data: { part_id: number; quantity: number; custom_price?: number; notes?: string }) => {
-    const response = await apiClient.post(`/repairs/${repairId}/parts`, data);
+    const response: any = await apiClient.post(`/repairs/${repairId}/parts`, data);
     return response.data;
   },
 
   updatePart: async (repairId: number, partId: number, data: { quantity?: number; unit_price?: number; notes?: string }) => {
-    const response = await apiClient.put(`/repairs/${repairId}/parts/${partId}`, data);
+    const response: any = await apiClient.put(`/repairs/${repairId}/parts/${partId}`, data);
     return response.data;
   },
 
   removePart: async (repairId: number, partId: number) => {
-    const response = await apiClient.delete(`/repairs/${repairId}/parts/${partId}`);
+    const response: any = await apiClient.delete(`/repairs/${repairId}/parts/${partId}`);
     return response.data;
   }
 };

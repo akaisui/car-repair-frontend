@@ -88,7 +88,7 @@ export default function BookingForm({ services, preSelectedService, user }: Book
     setBookingData(prev => ({
       ...prev,
       [section]: {
-        ...prev[section as keyof BookingData],
+        ...(prev[section as keyof BookingData] as any),
         [field]: value,
       },
     }));
@@ -144,7 +144,7 @@ export default function BookingForm({ services, preSelectedService, user }: Book
 
       if (response.success) {
         // Success - redirect to appointments page with appointment info
-        const appointmentCode = response.data.appointment.appointment_code;
+        const appointmentCode = (response.data as any)?.appointment?.appointment_code || response.data?.appointment_code || 'N/A';
 
         // Show success message
         alert(`🎉 Đặt lịch thành công!

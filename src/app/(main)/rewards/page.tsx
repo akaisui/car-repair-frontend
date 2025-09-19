@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 // import RewardsPage from '@/components/dashboard/RewardsPage';
 
 export default function DashboardRewardsPage() {
@@ -38,18 +40,18 @@ export default function DashboardRewardsPage() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
+          <Link
             href="/"
             className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             🏠 Về trang chủ
-          </a>
-          <a
+          </Link>
+          <Link
             href="/services"
             className="px-6 py-3 bg-white text-gray-700 font-semibold rounded-lg border border-gray-300 hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
           >
             🔧 Sử dụng dịch vụ
-          </a>
+          </Link>
         </div>
 
         {/* Rewards Preview */}

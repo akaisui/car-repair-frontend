@@ -35,11 +35,11 @@ export default function AppointmentDetails({ appointmentCode }: AppointmentDetai
         setLoading(true);
         setError(null);
 
-        const response = await apiClient.get(`/appointments/by-code/${appointmentCode}`);
+        const response: any = await apiClient.get(`/appointments/by-code/${appointmentCode}`);
 
-        if (response.data.success) {
+        if (response?.data?.success) {
           setAppointment(response.data.data);
-        } else if (response.data && response.data.id) {
+        } else if (response?.data && response.data.id) {
           // Direct data response (không có success wrapper)
           setAppointment(response.data);
         } else {

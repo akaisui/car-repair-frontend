@@ -32,7 +32,7 @@ interface NotificationProviderProps {
 }
 
 export const NotificationProvider: React.FC<NotificationProviderProps> = ({ children }) => {
-  const { user, isAuthenticated } = useAuth();
+  const { user } = useAuth();
   const { socket, isConnected } = useSocket();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -49,9 +49,9 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
 
       const response = await notificationApi.getUserNotifications({ limit: 20 });
 
-      if (response && response.notifications) {
-        setNotifications(response.notifications);
-        setUnreadCount(response.unread_count || 0);
+      if (response && (response as any).notifications) {
+        setNotifications((response as any).notifications);
+        setUnreadCount((response as any).unread_count || 0);
       } else {
         throw new Error('Failed to fetch notifications');
       }
@@ -62,7 +62,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
     } finally {
       setLoading(false);
     }
-  }, [isAuthenticated, user]);
+  }, [user]);
 
   // Fetch unread count only
   const fetchUnreadCount = useCallback(async () => {
@@ -76,7 +76,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
     } catch (err: any) {
       console.error('Error fetching unread count:', err);
     }
-  }, [isAuthenticated, user]);
+  }, [user]);
 
   // Mark notification as read
   const markAsRead = async (id: number) => {
@@ -168,7 +168,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
       setUnreadCount(0);
       setError(null);
     }
-  }, [isAuthenticated, user, fetchNotifications]);
+  }, [user, fetchNotifications]);
 
   // Socket.IO realtime notifications
   useEffect(() => {
@@ -187,7 +187,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
         message: notificationData.message,
         data: notificationData.data,
         is_read: false,
-        read_at: null,
+        read_at: undefined,
         created_at: new Date().toISOString()
       };
 
@@ -215,7 +215,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
 
       return () => clearInterval(interval);
     }
-  }, [isAuthenticated, user, isConnected, fetchNotifications]);
+  }, [user, isConnected, fetchNotifications]);
 
   // DISABLED: Poll for recent notifications every 60 seconds (using Socket.IO instead)
   useEffect(() => {
@@ -253,7 +253,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
     }, 60000); // 60 seconds
 
     return () => clearInterval(interval);
-  }, [isAuthenticated, user, notifications]);
+  }, [user, notifications]);
 
   const contextValue: NotificationContextType = {
     notifications,

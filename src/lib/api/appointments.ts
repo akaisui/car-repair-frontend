@@ -133,27 +133,31 @@ export const appointmentApi = {
     date_from?: string;
     date_to?: string;
   }) => {
-    return apiClient.get('/appointments', params);
+    const response: any = await apiClient.get('/appointments', params);
+    return response;
   },
 
   /**
    * Update appointment status (admin/staff only)
    */
   updateAppointmentStatus: async (id: number, status: string) => {
-    return apiClient.put(`/appointments/${id}/status`, { status });
+    const response: any = await apiClient.put(`/appointments/${id}/status`, { status });
+    return response;
   },
 
   /**
    * Update appointment (admin/staff only)
    */
   updateAppointment: async (id: number, data: Partial<Appointment>) => {
-    return apiClient.put(`/appointments/${id}`, data);
+    const response: any = await apiClient.put(`/appointments/${id}`, data);
+    return response;
   },
 
   /**
    * Get appointment statistics (admin only)
    */
   getAppointmentStatistics: async () => {
-    return apiClient.get('/appointments/statistics');
+    const response: any = await apiClient.get('/appointments/statistics');
+    return response;
   },
 };

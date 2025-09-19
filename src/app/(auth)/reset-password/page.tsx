@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { authApi } from '@/lib/api/auth';
 
-export default function ResetPasswordPage() {
+function ResetPasswordPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
@@ -69,7 +69,7 @@ export default function ResetPasswordPage() {
 
       await authApi.resetPassword({
         token,
-        password: formData.password,
+        newPassword: formData.password,
         confirmPassword: formData.confirmPassword,
       });
 
@@ -580,5 +580,13 @@ export default function ResetPasswordPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="h-screen flex items-center justify-center">Đang tải...</div>}>
+      <ResetPasswordPageContent />
+    </Suspense>
   );
 }

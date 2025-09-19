@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 // import TrackingPage from '@/components/dashboard/TrackingPage';
 
 export default function DashboardTrackingPage() {
@@ -38,18 +40,18 @@ export default function DashboardTrackingPage() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
+          <Link
             href="/"
             className="px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             🏠 Về trang chủ
-          </a>
-          <a
+          </Link>
+          <Link
             href="/book-appointment"
             className="px-6 py-3 bg-white text-gray-700 font-semibold rounded-lg border border-gray-300 hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
           >
             📅 Đặt lịch ngay
-          </a>
+          </Link>
         </div>
 
         {/* Feature Preview */}
